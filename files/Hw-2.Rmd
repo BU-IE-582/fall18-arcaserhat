@@ -1,0 +1,1143 @@
+---
+title: "IE 582 HW-2"
+author: "Serhat Arca"
+date: "26 October 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Task 1a)
+
+The aim of this task is to understand whether we can get an idea about the game outcomes by making use of odd data from several bookmakers. 5 bookmakers are selected to check if over/under 2.5 game result can be explained by the odds for different types of bets.The analysis is carried out in an unsupervised way and a principal component analysis (PCA) is done on a feature vector of odds to end up with a lower dimensional representation. The fraction of variance explained by each PCA for different bookmakers are given in Figures 1-5:  
+
+![Figure 1: Pinnacle odds PCA.](C:/Users/asus/Desktop/IE/Rplot.png)
+
+
+![Figure 2: SBOBET odds PCA.](C:/Users/asus/Desktop/IE/Rplot03.png)
+
+![Figure 3: Unibet odds PCA.](C:/Users/asus/Desktop/IE/Rplot06.png)
+
+![Figure 4: BetVictor odds PCA.](C:/Users/asus/Desktop/IE/Rplot09.png)
+
+![Figure 5: bet365 odds PCA.](C:/Users/asus/Desktop/IE/Rplot12.png)
+
+An investigation of Figures 1-5 reveals that, around 40% and 20% of the variance is explained by the first two principal components for each of the bookmakers. The highest variance explained by the first two principal components are %45 and %25.5 and belong to BetVictor.
+
+An eigenvalue is a number which gives information about how much variance is present in the data in that particular direction. The eigenvector with the highest eigenvalue is the principal component and the principal components are found by making use of this information. 
+
+In Figures 6-10, the directions of the principal components for different bookmakers are given.The red lines, ie. the principal components, are the eigenvectors with the largest eigenvalue. The principal components that are geometrically close to each other, give similar information about the data. 
+
+![Figure 6: Pinnacle Over/Under PCA Biplot.](C:/Users/asus/Desktop/IE/Rplot01.png)
+
+![Figure 7: SSOBET Over/Under PCA Biplot.](C:/Users/asus/Desktop/IE/Rplot04.png)
+
+![Figure 8: Unibet Over/Under PCA Biplot.](C:/Users/asus/Desktop/IE/Rplot07.png)
+
+![Figure 9: BetVictor Over/Under PCA Biplot.](C:/Users/asus/Desktop/IE/Rplot10.png)
+
+![Figure 10: bet365 Over/Under PCA Biplot.](C:/Users/asus/Desktop/IE/Rplot13.png)
+
+The new coordinates are plotted on a color-coded base for over/under status. The results for 5 different bookmakers are given in Figures 11-15
+
+![Figure 11: Pinnacle color-coded over/under PCA.](C:/Users/asus/Desktop/IE/Rplot02.png)
+
+![Figure 12: SBOBET color-coded over/under PCA.](C:/Users/asus/Desktop/IE/Rplot05.png)
+
+![Figure 13: Unibet color-coded over/under PCA.](C:/Users/asus/Desktop/IE/Rplot08.png)
+
+![Figure 14: BetVictor color-coded over/under PCA.](C:/Users/asus/Desktop/IE/Rplot11.png)
+
+![Figure 15: bet365 color-coded over/under PCA.](C:/Users/asus/Desktop/IE/Rplot14.png)
+
+An investigation of Figure 11-15 reveals that the over/under results are scattered throughout the graph. The over and under results coincide and are not well-seperated. The reason for that is, the principal component 1 and principal component 2 explain about %40 and %25 of the total variance. If more of the variance was explained by the principal components, one would expect to see a more profound seperation between the over and under results.    
+
+
+## Task 1b)
+
+In this task a similar strategy is followed by applying multidimensional scaling. Manhattan and Euclidean distances are used for this purpose. The results for different bookmakers are given in Figures 16-25 
+
+![Figure 16: Pinnacle Euclidean MDS.](C:/Users/asus/Desktop/IE/Rplot15.png)
+
+![Figure 17: Pinnacle Manhattan MDS.](C:/Users/asus/Desktop/IE/Rplot16.png)
+
+![Figure 18: SBOBET Euclidean MDS.](C:/Users/asus/Desktop/IE/Rplot17.png)
+
+![Figure 19: SBOBET Manhattan MDS.](C:/Users/asus/Desktop/IE/Rplot18.png)
+
+![Figure 20: Unibet Euclidean MDS.](C:/Users/asus/Desktop/IE/Rplot19.png)
+
+![Figure 21: Unibet Manhattan MDS.](C:/Users/asus/Desktop/IE/Rplot20.png)
+
+![Figure 22: BetVictor Euclidean MDS.](C:/Users/asus/Desktop/IE/Rplot21.png)
+
+![Figure 23: BetVictor Manhattan MDS.](C:/Users/asus/Desktop/IE/Rplot22.png)
+
+![Figure 24: bet365 Euclidean MDS.](C:/Users/asus/Desktop/IE/Rplot25.png)
+
+![Figure 25: bet365 Manhattan MDS.](C:/Users/asus/Desktop/IE/Rplot26.png)
+
+Manhattan distance is based on absolute value distance, whereas Euclidean distance is a squared error distance.An investigation of Figure 16-25 reveals that, the use of Euclidean or Manhattan distance gives similar results. For the chosen bookmakers, the Manhattan MDS explains more of the variation in the data, compared to Euclidean MDS. One would expect to get more robust results with the absolute value distance, whereas Euclidean distance would be influenced more by unusual values. The presence of unusual values in the data set might explain the slightly better results obtained with Manhattan distance.  
+
+## Task 1c
+
+In this task, we are asked to compare the results for PCA and MDS. A comparison of PCA and MDS results indicate that the Euclidean MDS and PCA give identical results, while Manhattan gives slightly better results in terms of the explained variance. PCA is a technique that minimizes dimensions while preserving covariance of data. MDS minimizes dimensions, preserving distance between data points. Since covariance in data is equal to Euclidean distance, PCA and Euclidean MDS give identical results.  
+
+## Task 2)
+
+In this task, a similar strategy as in Part (a) of Task 1 is followed for match outcomes.  The new coordinates are plotted on a color-coded base for home/tie/away status. The results for 5 different bookmakers are given in Figures 26-30
+
+![Figure 26: Pinnacle PCA for match outcomes.](C:/Users/asus/Desktop/IE/Rplot27.png)
+
+![Figure 27: SBOBET PCA for match outcomes.](C:/Users/asus/Desktop/IE/Rplot28.png)
+
+![Figure 28: Unibet PCA for match outcomes.](C:/Users/asus/Desktop/IE/Rplot29.png)
+
+![Figure 29: BetVictor PCA for match outcomes.](C:/Users/asus/Desktop/IE/Rplot30.png)
+
+![Figure 30: bet365 PCA for match outcomes.](C:/Users/asus/Desktop/IE/Rplot31.png)
+
+An investigation of Figure 26-30 reveals that home/tie/away match results can be distinguished by making use of PCA. The match scores are clustured, unlike over/under results, which means that PCA is better in obtaining information regarding match outcomes from odd data.     
+
+## Task 3
+
+In this task, the aim is to compress images using PCA. For this purpose, an image is read as a variable in R. The dimension is reduced to 200x200 pixels to increase computation speed. The original image is given in Figure 31:
+
+![Figure 31: Original image.](C:/Users/asus/Desktop/IE/Rplot32.png)
+
+The different channels for the original image is given in Figure 32:
+
+![Figure 32: Different channels for original image.](C:/Users/asus/Desktop/IE/Rplot43.png)
+
+In order to create a noisy image, a random noise of uniform distribution is added to each pixel value for each channel. The resulting noisy image and each of the noisy channels are given in Figure 33 and 34: 
+
+![Figure 33: Noisy original image.](C:/Users/asus/Desktop/IE/Rplot36.png)
+
+![Figure 34: Noisy channels image.](C:/Users/asus/Desktop/IE/Rplot44.png)
+
+The noisy image is transformed to a greyscale. Then, PCA is applied to patches extracted from the images. The result of PCA for image processing is given in Figure 35:
+
+![Figure 35: PCA for image processing.](C:/Users/asus/Desktop/IE/Rplot40.png)
+
+An investigation of Figure 35 reveals that, principal component 1 explains most of the variation in the data. The proportion of variance explained by the first principal component is around %81, whereas the amount for second component is around only 7%. 
+
+The image is then reconstructed using the first, second and third principal components. The resulting images are given in Figures 36-38:
+
+![Figure 36: Reconstructed image with one principal component.](C:/Users/asus/Desktop/IE/Rplot41.png)
+
+
+
+![Figure 37: Reconstructed image with second principal component.](C:/Users/asus/Desktop/IE/Rplot45.png)
+
+![Figure 38: Reconstructed image with second principal component.](C:/Users/asus/Desktop/IE/Rplot46.png)
+
+An investigation of Figure 36 reveals that, the original image is well-represented by using only principal component one. The images in Figure 37 and 38 do not give much information and are not similar to the original image. This is the expected result, since pc1 explains around %81 of the variance in the data and therefore gives a similar image to the original image.
+
+
+## Appendix
+
+## Task-1a Code
+```{r, include=TRUE, eval=FALSE}
+require(data.table)
+require(anytime)
+
+matches_file_path='C:/Users/asus/Desktop/df9b1196-e3cf-4cc7-9159-f236fe738215_matches.rds'
+odd_details_file_path='C:/Users/asus/Desktop/df9b1196-e3cf-4cc7-9159-f236fe738215_odd_details.rds'
+
+matches=readRDS(matches_file_path)
+odds=readRDS(odd_details_file_path)
+
+data.table(matches)
+data.table(odds)
+matches=unique(matches)
+
+#transform unix time to date
+matches[,match_date:=anydate(date)]
+#transform unix time to date time
+matches[,match_time:=anytime(date)]
+matches[,Year:=year(match_time)]
+
+#filter na scores
+matches=na.omit(matches,cols="score")
+
+#order by home team and match date (decreasing)
+matches=matches[order(home,-match_time)]
+matches[,c("HomeGoals","AwayGoals"):=tstrsplit(score,':')]
+#transform characters to numeric for scores
+matches$HomeGoals=as.numeric(matches$HomeGoals)
+matches[,AwayGoals:=as.numeric(AwayGoals)]
+#calculate total goals
+matches[,TotalGoals:=HomeGoals+AwayGoals]
+
+# mark over under
+matches[,IsOver:=0]
+matches[TotalGoals>2.5,IsOver:=1]
+# remove unnecessary columns
+matches = matches[,c("leagueId","home", "away","score","date","type","match_date","match_time","Year","HomeGoals","AwayGoals","TotalGoals"):=NULL]
+
+
+# 1-Pinnacle
+pinnacle_odds=odds[bookmaker=='Pinnacle']
+
+#order data in ascending date
+odd_data_pinnacle=pinnacle_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5=odd_data_pinnacle[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final=odd_data_pinnacle[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final=dcast(odds_final,matchId~oddtype+bookmaker,
+                      value.var='final_odd')
+#remove over/under columns
+wide_odds_final[,over_Pinnacle:=NULL]
+wide_odds_final[,under_Pinnacle:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final=odds_ou_2.5[,list(final_odd=odd[.N]),
+                              by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final=dcast(odds_ou_2.5_final,
+                             matchId~oddtype+bookmaker,
+                             value.var='final_odd')
+
+#merge columns
+merged_matches_pinnacle=merge(wide_odds_final,wide_odds_ou_2.5_final,by='matchId')
+merged_matches_pinnacle=merged_matches_pinnacle[complete.cases(merged_matches_pinnacle)]
+merged_pinnacle_final=merge(merged_matches_pinnacle,matches,by='matchId')
+
+#PCA 
+pca=princomp(merged_pinnacle_final[,2:8],cor = TRUE)
+plot(pca, main = 'Pinnacle odds - PCA')
+str(pca)
+summary(pca)
+
+biplot(pca, main='Pinnacle Over/Under PCA biplot')
+plot(pca$scores[,1],pca$scores[,2],col=merged_pinnacle_final$IsOver+1,xlab='Principal Component 1', ylab='Principal Component 2', main='Pinnacle Over/Under PCA',pch=".",cex=7)
+
+#2- SBOBET
+SBOBET_odds=odds[bookmaker=='SBOBET']
+
+#order data in ascending date
+odd_data_SBOBET=SBOBET_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_2=odd_data_SBOBET[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_2=odd_data_SBOBET[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_2=dcast(odds_final_2,matchId~oddtype+bookmaker,
+                      value.var='final_odd')
+#remove over/under columns
+wide_odds_final_2[,over_SBOBET:=NULL]
+wide_odds_final_2[,under_SBOBET:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_2=odds_ou_2.5_2[,list(final_odd=odd[.N]),
+                              by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_2=dcast(odds_ou_2.5_final_2,
+                             matchId~oddtype+bookmaker,
+                             value.var='final_odd')
+
+#merge columns
+merged_matches_SBOBET=merge(wide_odds_final_2,wide_odds_ou_2.5_final_2,by='matchId')
+merged_matches_SBOBET=merged_matches_SBOBET[complete.cases(merged_matches_SBOBET)]
+merged_SBOBET_final=merge(merged_matches_SBOBET,matches,by='matchId')
+
+#PCA 
+pca_2=princomp(merged_SBOBET_final[,2:11],cor = TRUE)
+plot(pca_2, main = 'SBOBET odds - PCA')
+str(pca_2)
+summary(pca_2)
+
+biplot(pca_2, main='SBOBET Over/Under PCA biplot')
+plot(pca_2$scores[,1],pca_2$scores[,2],col=merged_SBOBET_final$IsOver+1,xlab='Principal Component 1', ylab='Principal Component 2', main='SBOBET Over/Under PCA',pch=".",cex=7)
+
+#3- Unibet
+Unibet_odds=odds[bookmaker=='Unibet']
+
+#order data in ascending date
+odd_data_Unibet=Unibet_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_3=odd_data_Unibet[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_3=odd_data_Unibet[,list(final_odd=odd[.N]),
+                                by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_3=dcast(odds_final_3,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_3[,over_Unibet:=NULL]
+wide_odds_final_3[,under_Unibet:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_3=odds_ou_2.5_3[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_3=dcast(odds_ou_2.5_final_3,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_Unibet=merge(wide_odds_final_3,wide_odds_ou_2.5_final_3,by='matchId')
+merged_matches_Unibet=merged_matches_Unibet[complete.cases(merged_matches_Unibet)]
+merged_Unibet_final=merge(merged_matches_Unibet,matches,by='matchId')
+
+#PCA 
+pca_3=princomp(merged_Unibet_final[,2:13],cor = TRUE)
+plot(pca_3, main = 'Unibet odds - PCA')
+str(pca_3)
+summary(pca_3)
+
+biplot(pca_3, main='Unibet Over/Under PCA biplot')
+plot(pca_3$scores[,1],pca_3$scores[,2],col=merged_Unibet_final$IsOver+1,xlab='Principal Component 1', ylab='Principal Component 2', main='Unibet Over/Under PCA',pch=".",cex=7)
+
+#4- BetVictor
+BetVictor_odds=odds[bookmaker=='BetVictor']
+
+#order data in ascending date
+odd_data_BetVictor=BetVictor_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_4=odd_data_BetVictor[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_4=odd_data_BetVictor[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_4=dcast(odds_final_4,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_4[,over_BetVictor:=NULL]
+wide_odds_final_4[,under_BetVictor:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_4=odds_ou_2.5_4[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_4=dcast(odds_ou_2.5_final_4,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_BetVictor=merge(wide_odds_final_4,wide_odds_ou_2.5_final_4,by='matchId')
+merged_matches_BetVictor=merged_matches_BetVictor[complete.cases(merged_matches_BetVictor)]
+merged_BetVictor_final=merge(merged_matches_BetVictor,matches,by='matchId')
+
+#PCA 
+pca_4=princomp(merged_BetVictor_final[,2:13],cor = TRUE)
+plot(pca_4, main = 'BetVictor odds - PCA')
+str(pca_4)
+summary(pca_4)
+
+biplot(pca_4, main='BetVictor Over/Under PCA biplot')
+plot(pca_4$scores[,1],pca_4$scores[,2],col=merged_BetVictor_final$IsOver+1,xlab='Principal Component 1', ylab='Principal Component 2', main='BetVictor Over/Under PCA',pch=".",cex=7)
+
+#5- bet365
+bet365_odds=odds[bookmaker=='bet365']
+
+#order data in ascending date
+odd_data_bet365=bet365_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_5=odd_data_bet365[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_5=odd_data_bet365[,list(final_odd=odd[.N]),
+                                by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_5=dcast(odds_final_5,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_5[,over_bet365:=NULL]
+wide_odds_final_5[,under_bet365:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_5=odds_ou_2.5_5[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_5=dcast(odds_ou_2.5_final_5,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_bet365=merge(wide_odds_final_5,wide_odds_ou_2.5_final_5,by='matchId')
+merged_matches_bet365=merged_matches_bet365[complete.cases(merged_matches_bet365)]
+merged_bet365_final=merge(merged_matches_bet365,matches,by='matchId')
+
+#PCA 
+pca_5=princomp(merged_bet365_final[,2:13],cor = TRUE)
+plot(pca_5, main = 'bet365 odds - PCA')
+str(pca_5)
+summary(pca_5)
+
+biplot(pca_5, main='bet365 Over/Under PCA biplot')
+plot(pca_5$scores[,1],pca_5$scores[,2],col=merged_bet365_final$IsOver+1,xlab='Principal Component 1', ylab='Principal Component 2', main='bet365 Over/Under PCA',pch=".",cex=7)
+
+```
+
+## Task-1b Code
+
+```{r,include=TRUE, eval=FALSE}
+require(data.table)
+require(anytime)
+
+matches_file_path='C:/Users/asus/Desktop/df9b1196-e3cf-4cc7-9159-f236fe738215_matches.rds'
+odd_details_file_path='C:/Users/asus/Desktop/df9b1196-e3cf-4cc7-9159-f236fe738215_odd_details.rds'
+
+matches=readRDS(matches_file_path)
+odds=readRDS(odd_details_file_path)
+
+data.table(matches)
+data.table(odds)
+matches=unique(matches)
+
+#transform unix time to date
+matches[,match_date:=anydate(date)]
+#transform unix time to date time
+matches[,match_time:=anytime(date)]
+matches[,Year:=year(match_time)]
+
+#filter na scores
+matches=na.omit(matches,cols="score")
+
+#order by home team and match date (decreasing)
+matches=matches[order(home,-match_time)]
+matches[,c("HomeGoals","AwayGoals"):=tstrsplit(score,':')]
+#transform characters to numeric for scores
+matches$HomeGoals=as.numeric(matches$HomeGoals)
+matches[,AwayGoals:=as.numeric(AwayGoals)]
+#calculate total goals
+matches[,TotalGoals:=HomeGoals+AwayGoals]
+
+# mark over under
+matches[,IsOver:=0]
+matches[TotalGoals>2.5,IsOver:=1]
+# remove unnecessary columns
+matches = matches[,c("leagueId","home", "away","score","date","type","match_date","match_time","Year","HomeGoals","AwayGoals","TotalGoals"):=NULL]
+
+
+# 1-Pinnacle
+pinnacle_odds=odds[bookmaker=='Pinnacle']
+
+#order data in ascending date
+odd_data_pinnacle=pinnacle_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5=odd_data_pinnacle[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final=odd_data_pinnacle[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final=dcast(odds_final,matchId~oddtype+bookmaker,
+                      value.var='final_odd')
+#remove over/under columns
+wide_odds_final[,over_Pinnacle:=NULL]
+wide_odds_final[,under_Pinnacle:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final=odds_ou_2.5[,list(final_odd=odd[.N]),
+                              by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final=dcast(odds_ou_2.5_final,
+                             matchId~oddtype+bookmaker,
+                             value.var='final_odd')
+
+#merge columns
+merged_matches_pinnacle=merge(wide_odds_final,wide_odds_ou_2.5_final,by='matchId')
+merged_matches_pinnacle=merged_matches_pinnacle[complete.cases(merged_matches_pinnacle)]
+merged_pinnacle_final=merge(merged_matches_pinnacle,matches,by='matchId')
+
+#Euclidean MDS 
+
+euclideanMDS=dist(merged_pinnacle_final[,2:8])
+
+distance.matrix_euclidean = dist(scale((merged_pinnacle_final[,2:8]), center=TRUE, scale=TRUE),
+                        method="euclidean")
+
+mds.stuff = cmdscale(distance.matrix_euclidean, eig=TRUE, x.ret=TRUE)
+
+mds.var.per = round(mds.stuff$eig/sum(mds.stuff$eig)*100, 1)
+
+mds.values = mds.stuff$points
+mds.data = data.frame(X=mds.values[,1],
+                       Y=mds.values[,2])
+require(ggplot2)
+ggplot(data=mds.data, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per[2], "%", sep="")) +
+  ggtitle("Pinnacle MDS plot using Euclidean distance")
+
+#Manhattan MDS
+
+ManhattanMDS=dist(merged_pinnacle_final[,2:8])
+
+distance.matrix_manhattan = dist(scale((merged_pinnacle_final[,2:8]), center=TRUE, scale=TRUE),
+                        method="manhattan")
+
+mds.stuff_manhattan = cmdscale(distance.matrix_manhattan, eig=TRUE, x.ret=TRUE)
+
+mds.var.per_manhattan = round(mds.stuff_manhattan$eig/sum(mds.stuff_manhattan$eig)*100, 1)
+
+mds.values_manhattan = mds.stuff_manhattan$points
+mds.data_manhattan = data.frame(X=mds.values_manhattan[,1],
+                       Y=mds.values_manhattan[,2])
+
+require(ggplot2)
+ggplot(data=mds.data_manhattan, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_manhattan[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_manhattan[2], "%", sep="")) +
+  ggtitle("Pinnacle MDS plot using Manhattan distance")
+
+#2- SBOBET
+SBOBET_odds=odds[bookmaker=='SBOBET']
+
+#order data in ascending date
+odd_data_SBOBET=SBOBET_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_2=odd_data_SBOBET[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_2=odd_data_SBOBET[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_2=dcast(odds_final_2,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_2[,over_SBOBET:=NULL]
+wide_odds_final_2[,under_SBOBET:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_2=odds_ou_2.5_2[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_2=dcast(odds_ou_2.5_final_2,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_SBOBET=merge(wide_odds_final_2,wide_odds_ou_2.5_final_2,by='matchId')
+merged_matches_SBOBET=merged_matches_SBOBET[complete.cases(merged_matches_SBOBET)]
+merged_SBOBET_final=merge(merged_matches_SBOBET,matches,by='matchId')
+
+#Euclidean MDS 
+
+euclideanMDS_2=dist(merged_SBOBET_final[,2:11])
+
+distance.matrix_euclidean_2 = dist(scale((merged_SBOBET_final[,2:11]), center=TRUE, scale=TRUE),
+                                  method="euclidean")
+
+mds.stuff_2 = cmdscale(distance.matrix_euclidean_2, eig=TRUE, x.ret=TRUE)
+
+mds.var.per_2 = round(mds.stuff_2$eig/sum(mds.stuff_2$eig)*100, 1)
+
+mds.values_2 = mds.stuff_2$points
+mds.data_2 = data.frame(X=mds.values_2[,1],
+                       Y=mds.values_2[,2])
+require(ggplot2)
+ggplot(data=mds.data_2, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_2[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_2[2], "%", sep="")) +
+  ggtitle("SSOBET MDS plot using Euclidean distance")
+
+#Manhattan MDS
+
+ManhattanMDS_2=dist(merged_SBOBET_final[,2:11])
+
+distance.matrix_manhattan_2 = dist(scale((merged_SBOBET_final[,2:11]), center=TRUE, scale=TRUE),
+                                  method="manhattan")
+
+mds.stuff_manhattan_2 = cmdscale(distance.matrix_manhattan_2, eig=TRUE, x.ret=TRUE)
+
+mds.var.per_manhattan_2 = round(mds.stuff_manhattan_2$eig/sum(mds.stuff_manhattan_2$eig)*100, 1)
+
+mds.values_manhattan_2 = mds.stuff_manhattan_2$points
+mds.data_manhattan_2 = data.frame(X=mds.values_manhattan_2[,1],
+                                 Y=mds.values_manhattan_2[,2])
+
+require(ggplot2)
+ggplot(data=mds.data_manhattan_2, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_manhattan_2[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_manhattan_2[2], "%", sep="")) +
+  ggtitle("SSOBET MDS plot using Manhattan distance")
+
+#3- Unibet
+Unibet_odds=odds[bookmaker=='Unibet']
+
+#order data in ascending date
+odd_data_Unibet=Unibet_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_3=odd_data_Unibet[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_3=odd_data_Unibet[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_3=dcast(odds_final_3,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_3[,over_Unibet:=NULL]
+wide_odds_final_3[,under_Unibet:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_3=odds_ou_2.5_3[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_3=dcast(odds_ou_2.5_final_3,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_Unibet=merge(wide_odds_final_3,wide_odds_ou_2.5_final_3,by='matchId')
+merged_matches_Unibet=merged_matches_Unibet[complete.cases(merged_matches_Unibet)]
+merged_Unibet_final=merge(merged_matches_Unibet,matches,by='matchId')
+
+#Euclidean MDS 
+
+euclideanMDS_3=dist(merged_Unibet_final[,2:13])
+
+distance.matrix_euclidean_3 = dist(scale((merged_Unibet_final[,2:13]), center=TRUE, scale=TRUE),
+                                  method="euclidean")
+
+mds.stuff_3 = cmdscale(distance.matrix_euclidean_3, eig=TRUE, x.ret=TRUE)
+.
+mds.var.per_3 = round(mds.stuff_3$eig/sum(mds.stuff_3$eig)*100, 1)
+
+mds.values_3 = mds.stuff_3$points
+mds.data_3 = data.frame(X=mds.values_3[,1],
+                       Y=mds.values_3[,2])
+require(ggplot2)
+ggplot(data=mds.data_3, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_3[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_3[2], "%", sep="")) +
+  ggtitle("UniBet MDS plot using Euclidean distance")
+
+#Manhattan MDS
+
+ManhattanMDS_3=dist(merged_Unibet_final[,2:13])
+
+distance.matrix_manhattan_3 = dist(scale((merged_Unibet_final[,2:13]), center=TRUE, scale=TRUE),
+                                  method="manhattan")
+
+mds.stuff_manhattan_3 = cmdscale(distance.matrix_manhattan_3, eig=TRUE, x.ret=TRUE)
+.
+mds.var.per_manhattan_3 = round(mds.stuff_manhattan_3$eig/sum(mds.stuff_manhattan_3$eig)*100, 1)
+
+mds.values_manhattan_3 = mds.stuff_manhattan_3$points
+mds.data_manhattan_3 = data.frame(X=mds.values_manhattan_3[,1],
+                                 Y=mds.values_manhattan_3[,2])
+
+require(ggplot2)
+ggplot(data=mds.data_manhattan_3, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_manhattan_3[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_manhattan_3[2], "%", sep="")) +
+  ggtitle("Unibet MDS plot using Manhattan distance")
+
+#4- BetVictor
+BetVictor_odds=odds[bookmaker=='BetVictor']
+
+#order data in ascending date
+odd_data_BetVictor=BetVictor_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_4=odd_data_BetVictor[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_4=odd_data_BetVictor[,list(final_odd=odd[.N]),
+                                by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_4=dcast(odds_final_4,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_4[,over_BetVictor:=NULL]
+wide_odds_final_4[,under_BetVictor:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_4=odds_ou_2.5_4[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_4=dcast(odds_ou_2.5_final_4,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_BetVictor=merge(wide_odds_final_4,wide_odds_ou_2.5_final_4,by='matchId')
+merged_matches_BetVictor=merged_matches_BetVictor[complete.cases(merged_matches_BetVictor)]
+merged_BetVictor_final=merge(merged_matches_BetVictor,matches,by='matchId')
+
+#Euclidean MDS 
+
+euclideanMDS_4=dist(merged_BetVictor_final[,2:13])
+
+distance.matrix_euclidean_4 = dist(scale((merged_BetVictor_final[,2:13]), center=TRUE, scale=TRUE),
+                                    method="euclidean")
+
+mds.stuff_4 = cmdscale(distance.matrix_euclidean_4, eig=TRUE, x.ret=TRUE)
+
+mds.var.per_4 = round(mds.stuff_4$eig/sum(mds.stuff_4$eig)*100, 1)
+
+mds.values_4 = mds.stuff_4$points
+mds.data_4 = data.frame(X=mds.values_4[,1],
+                         Y=mds.values_4[,2])
+require(ggplot2)
+ggplot(data=mds.data_4, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_4[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_4[2], "%", sep="")) +
+  ggtitle("BetVictor MDS plot using Euclidean distance")
+
+#Manhattan MDS
+
+ManhattanMDS_4=dist(merged_BetVictor_final[,2:13])
+
+distance.matrix_manhattan_4 = dist(scale((merged_BetVictor_final[,2:13]), center=TRUE, scale=TRUE),
+                                    method="manhattan")
+
+mds.stuff_manhattan_4 = cmdscale(distance.matrix_manhattan_4, eig=TRUE, x.ret=TRUE)
+
+mds.var.per_manhattan_4 = round(mds.stuff_manhattan_4$eig/sum(mds.stuff_manhattan_4$eig)*100, 1)
+mds.values_manhattan_4 = mds.stuff_manhattan_4$points
+mds.data_manhattan_4 = data.frame(X=mds.values_manhattan_4[,1],
+                                   Y=mds.values_manhattan_4[,2])
+
+require(ggplot2)
+ggplot(data=mds.data_manhattan_4, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_manhattan_4[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_manhattan_4[2], "%", sep="")) +
+  ggtitle("BetVictor MDS plot using Manhattan distance")
+
+#5- bet365
+bet365_odds=odds[bookmaker=='bet365']
+
+#order data in ascending date
+odd_data_bet365=bet365_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_5=odd_data_bet365[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_5=odd_data_bet365[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_5=dcast(odds_final_5,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_5[,over_bet365:=NULL]
+wide_odds_final_5[,under_bet365:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_5=odds_ou_2.5_5[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_5=dcast(odds_ou_2.5_final_5,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_bet365=merge(wide_odds_final_5,wide_odds_ou_2.5_final_5,by='matchId')
+merged_matches_bet365=merged_matches_bet365[complete.cases(merged_matches_bet365)]
+merged_bet365_final=merge(merged_matches_bet365,matches,by='matchId')
+
+#Euclidean MDS 
+
+euclideanMDS_5=dist(merged_bet365_final[,2:13])
+
+distance.matrix_euclidean_5 = dist(scale((merged_bet365_final[,2:13]), center=TRUE, scale=TRUE),
+                                   method="euclidean")
+
+mds.stuff_5 = cmdscale(distance.matrix_euclidean_5, eig=TRUE, x.ret=TRUE)
+
+mds.var.per_5 = round(mds.stuff_5$eig/sum(mds.stuff_5$eig)*100, 1)
+
+mds.values_5 = mds.stuff_5$points
+mds.data_5 = data.frame(X=mds.values_5[,1],
+                         Y=mds.values_5[,2])
+require(ggplot2)
+ggplot(data=mds.data_5, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_5[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_5[2], "%", sep="")) +
+  ggtitle("bet365 MDS plot using Euclidean distance")
+
+#Manhattan MDS
+
+ManhattanMDS_5=dist(merged_bet365_final[,2:13])
+
+distance.matrix_manhattan_5 = dist(scale((merged_bet365_final[,2:13]), center=TRUE, scale=TRUE),
+                                   method="manhattan")
+
+mds.stuff_manhattan_5 = cmdscale(distance.matrix_manhattan_5, eig=TRUE, x.ret=TRUE)
+
+mds.var.per_manhattan_5 = round(mds.stuff_manhattan_5$eig/sum(mds.stuff_manhattan_5$eig)*100, 1)
+
+mds.values_manhattan_5 = mds.stuff_manhattan_5$points
+mds.data_manhattan_5 = data.frame(X=mds.values_manhattan_5[,1],
+                                  Y=mds.values_manhattan_5[,2])
+
+require(ggplot2)
+ggplot(data=mds.data_manhattan_5, aes(x=X, y=Y)) +geom_point()+
+  theme_bw() +
+  xlab(paste("MDS1 - ", mds.var.per_manhattan_5[1], "%", sep="")) +
+  ylab(paste("MDS2 - ", mds.var.per_manhattan_5[2], "%", sep="")) +
+  ggtitle("bet365 MDS plot using Manhattan distance")
+
+```
+
+## Task-2 Code
+```{r,include=TRUE, eval=FALSE}
+require(data.table)
+require(anytime)
+
+matches_file_path='C:/Users/asus/Desktop/df9b1196-e3cf-4cc7-9159-f236fe738215_matches.rds'
+odd_details_file_path='C:/Users/asus/Desktop/df9b1196-e3cf-4cc7-9159-f236fe738215_odd_details.rds'
+
+matches=readRDS(matches_file_path)
+odds=readRDS(odd_details_file_path)
+
+data.table(matches)
+data.table(odds)
+matches=unique(matches)
+
+#transform unix time to date
+matches[,match_date:=anydate(date)]
+#transform unix time to date time
+matches[,match_time:=anytime(date)]
+matches[,Year:=year(match_time)]
+
+#filter na scores
+matches=na.omit(matches,cols="score")
+
+#order by home team and match date (decreasing)
+matches=matches[order(home,-match_time)]
+matches[,c("HomeGoals","AwayGoals"):=tstrsplit(score,':')]
+#transform characters to numeric for scores
+matches$HomeGoals=as.numeric(matches$HomeGoals)
+matches[,AwayGoals:=as.numeric(AwayGoals)]
+
+# mark match outcome
+matches[,Result:=0]
+matches[AwayGoals==HomeGoals, Result:=1] #TIE
+matches[AwayGoals<HomeGoals, Result:=2] #HOME
+matches[AwayGoals>HomeGoals,Result:=3] #AWAY
+# remove unnecessary columns
+matches = matches[,c("leagueId","home", "away","score","date","type","match_date","match_time","Year","HomeGoals","AwayGoals"):=NULL]
+
+
+# 1-Pinnacle
+pinnacle_odds=odds[bookmaker=='Pinnacle']
+
+#order data in ascending date
+odd_data_pinnacle=pinnacle_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5=odd_data_pinnacle[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final=odd_data_pinnacle[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final=dcast(odds_final,matchId~oddtype+bookmaker,
+                      value.var='final_odd')
+#remove over/under columns
+wide_odds_final[,over_Pinnacle:=NULL]
+wide_odds_final[,under_Pinnacle:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final=odds_ou_2.5[,list(final_odd=odd[.N]),
+                              by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final=dcast(odds_ou_2.5_final,
+                             matchId~oddtype+bookmaker,
+                             value.var='final_odd')
+
+#merge columns
+merged_matches_pinnacle=merge(wide_odds_final,wide_odds_ou_2.5_final,by='matchId')
+merged_matches_pinnacle=merged_matches_pinnacle[complete.cases(merged_matches_pinnacle)]
+merged_pinnacle_final=merge(merged_matches_pinnacle,matches,by='matchId')
+
+#PCA 
+pca=princomp(merged_pinnacle_final[,2:8],cor = TRUE)
+plot(pca, main = 'Pinnacle odds - PCA')
+str(pca)
+summary(pca)
+
+plot(pca$scores[,1],pca$scores[,2],col=merged_pinnacle_final$Result,pch=".",cex=5,xlab='Principal Component 1', ylab='Principal Component 2', main = 'Pinnacle PCA for Match Outcomes')
+legend(-7, 8, legend=c("TIE", "HOME", "AWAY"),
+       col=c(1, 2,3), pch=".", cex=0.8, pt.cex=5)
+
+#2- SBOBET
+SBOBET_odds=odds[bookmaker=='SBOBET']
+
+#order data in ascending date
+odd_data_SBOBET=SBOBET_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_2=odd_data_SBOBET[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_2=odd_data_SBOBET[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_2=dcast(odds_final_2,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_2[,over_SBOBET:=NULL]
+wide_odds_final_2[,under_SBOBET:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_2=odds_ou_2.5_2[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_2=dcast(odds_ou_2.5_final_2,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_SBOBET=merge(wide_odds_final_2,wide_odds_ou_2.5_final_2,by='matchId')
+merged_matches_SBOBET=merged_matches_SBOBET[complete.cases(merged_matches_SBOBET)]
+merged_SBOBET_final=merge(merged_matches_SBOBET,matches,by='matchId')
+
+#PCA 
+pca_2=princomp(merged_SBOBET_final[,2:11],cor = TRUE)
+str(pca_2)
+summary(pca_2)
+
+plot(pca_2$scores[,1],pca_2$scores[,2],col=merged_SBOBET_final$Result,pch=".",cex=5,xlab='Principal Component 1', ylab='Principal Component 2', main = 'SBOBET PCA for Match Outcomes')
+legend(-7, 8, legend=c("TIE", "HOME", "AWAY"),
+       col=c(1, 2,3), pch=".", cex=0.8, pt.cex=5)
+
+#3- Unibet
+Unibet_odds=odds[bookmaker=='Unibet']
+
+#order data in ascending date
+odd_data_Unibet=Unibet_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_3=odd_data_Unibet[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_3=odd_data_Unibet[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_3=dcast(odds_final_3,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_3[,over_Unibet:=NULL]
+wide_odds_final_3[,under_Unibet:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_3=odds_ou_2.5_3[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_3=dcast(odds_ou_2.5_final_3,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_Unibet=merge(wide_odds_final_3,wide_odds_ou_2.5_final_3,by='matchId')
+merged_matches_Unibet=merged_matches_Unibet[complete.cases(merged_matches_Unibet)]
+merged_Unibet_final=merge(merged_matches_Unibet,matches,by='matchId')
+
+#PCA 
+pca_3=princomp(merged_Unibet_final[,2:13],cor = TRUE)
+str(pca_3)
+summary(pca_3)
+
+plot(pca_3$scores[,1],pca_3$scores[,2],col=merged_Unibet_final$Result,pch=".",cex=5,xlab='Principal Component 1', ylab='Principal Component 2', main = 'Unibet PCA for Match Outcomes')
+legend(-7, 8, legend=c("TIE", "HOME", "AWAY"),
+       col=c(1, 2,3), pch=".", cex=0.8, pt.cex=5)
+
+#4- BetVictor
+BetVictor_odds=odds[bookmaker=='BetVictor']
+
+#order data in ascending date
+odd_data_BetVictor=BetVictor_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_4=odd_data_BetVictor[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_4=odd_data_BetVictor[,list(final_odd=odd[.N]),
+                                by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_4=dcast(odds_final_4,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_4[,over_BetVictor:=NULL]
+wide_odds_final_4[,under_BetVictor:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_4=odds_ou_2.5_4[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_4=dcast(odds_ou_2.5_final_4,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_BetVictor=merge(wide_odds_final_4,wide_odds_ou_2.5_final_4,by='matchId')
+merged_matches_BetVictor=merged_matches_BetVictor[complete.cases(merged_matches_BetVictor)]
+merged_BetVictor_final=merge(merged_matches_BetVictor,matches,by='matchId')
+
+#PCA 
+pca_4=princomp(merged_BetVictor_final[,2:13],cor = TRUE)
+str(pca_4)
+summary(pca_4)
+
+plot(pca_4$scores[,1],pca_4$scores[,2],col=merged_BetVictor_final$Result,pch=".",cex=5,xlab='Principal Component 1', ylab='Principal Component 2', main = 'BetVictor PCA for Match Outcomes')
+legend(-7, 8, legend=c("TIE", "HOME", "AWAY"),
+       col=c(1, 2,3), pch=".", cex=0.8, pt.cex=5)
+
+#5- bet365
+bet365_odds=odds[bookmaker=='bet365']
+
+#order data in ascending date
+odd_data_bet365=bet365_odds[order(matchId,oddtype,bookmaker,date)]
+#filter over under 2.5
+odds_ou_2.5_5=odd_data_bet365[betType=='ou' & totalhandicap=='2.5']
+
+#take final odds and transform to wide format            
+
+odds_final_5=odd_data_bet365[,list(final_odd=odd[.N]),
+                             by=list(matchId,oddtype,bookmaker)]
+wide_odds_final_5=dcast(odds_final_5,matchId~oddtype+bookmaker,
+                        value.var='final_odd')
+#remove over/under columns
+wide_odds_final_5[,over_bet365:=NULL]
+wide_odds_final_5[,under_bet365:=NULL]
+
+#consider over/under 2.5 only
+odds_ou_2.5_final_5=odds_ou_2.5_5[,list(final_odd=odd[.N]),
+                                  by=list(matchId,oddtype,bookmaker)]
+wide_odds_ou_2.5_final_5=dcast(odds_ou_2.5_final_5,
+                               matchId~oddtype+bookmaker,
+                               value.var='final_odd')
+
+#merge columns
+merged_matches_bet365=merge(wide_odds_final_5,wide_odds_ou_2.5_final_5,by='matchId')
+merged_matches_bet365=merged_matches_bet365[complete.cases(merged_matches_bet365)]
+merged_bet365_final=merge(merged_matches_bet365,matches,by='matchId')
+
+#PCA 
+pca_5=princomp(merged_bet365_final[,2:13],cor = TRUE)
+str(pca_5)
+summary(pca_5)
+
+plot(pca_5$scores[,1],pca_5$scores[,2],col=merged_bet365_final$Result,pch=".",cex=5,xlab='Principal Component 1', ylab='Principal Component 2', main = 'bet365 PCA for Match Outcomes')
+legend(-7, 8, legend=c("TIE", "HOME", "AWAY"),
+       col=c(1, 2,3), pch=".", cex=0.8, pt.cex=5)
+```
+
+Task-3
+```{r,include=TRUE, eval=FALSE}
+library(jpeg)
+library(graphics)
+
+str(img)
+dim(img)
+img = readJPEG("C:/Users/asus/Desktop/dog.jpg", native = FALSE)
+plot(c(0, 225), c(0, 225), type = "n", xlab = "", ylab = "")
+rasterImage(img,0,0, 200, 200, interpolate = FALSE)
+
+
+
+#Channels
+red=img[,,1]
+green=img[,,2]
+blue=img[,,3]
+
+par(mfrow=c(1,3))
+image(t(red[nrow(red):1L,]),main="Red Channel")
+image(t(green[nrow(green):1L,]),main="Green Channel")
+image(t(blue[nrow(blue):1L,]),main="Blue Channel")
+
+#Noise addition
+
+noisy_img=img
+for(i in 1:3){noisy_img[,,i]=noisy_img[,,i]+matrix(runif(200*200,0,0.1),nrow=200)}
+# gives the error of larger than 1 value
+noisy_img[noisy_img>1]=1
+
+plot(c(0, 225), c(0, 225), type = "n", xlab = "", ylab = "")
+rasterImage(noisy_img,0,0, 200, 200, interpolate = FALSE)
+
+
+#Noisy channels
+noisy_red=noisy_img[,,1]
+noisy_green=noisy_img[,,2]
+noisy_blue=noisy_img[,,3]
+noisy_gray=noisy_red+noisy_green+noisy_blue
+noisy_gray=noisy_gray/max(noisy_gray)
+
+par(mfrow=c(1,3))
+image(t(noisy_red[nrow(noisy_red):1L,]),main="Noisy Red Channel")
+image(t(noisy_green[nrow(noisy_green):1L,]),main="Noisy Green Channel")
+image(t(noisy_blue[nrow(noisy_blue):1L,]),main="Noisy Blue Channel")
+
+
+# Construct patches
+matrix=matrix(0,40000,9)
+
+for (i in 2:199) {
+  for(j in 2:199) {
+    matrix[198*(i-2)+j-1,1]=noisy_gray[i-1,j-1]
+    matrix[198*(i-2)+j-1,2]=noisy_gray[i-1,j]
+    matrix[198*(i-2)+j-1,3]=noisy_gray[i-1,j+1]
+    matrix[198*(i-2)+j-1,4]=noisy_gray[i,j-1]
+    matrix[198*(i-2)+j-1,5]=noisy_gray[i,j]
+    matrix[198*(i-2)+j-1,6]=noisy_gray[i,j+1]
+    matrix[198*(i-2)+j-1,7]=noisy_gray[i+1,j-1]
+    matrix[198*(i-2)+j-1,8]=noisy_gray[i+1,j]
+    matrix[198*(i-2)+j-1,9]=noisy_gray[i+1,j+1]
+  }
+}
+data=matrix
+
+pca = princomp(data, cor=TRUE)
+plot(pca)
+
+par(mfrow=c(1,1))
+
+#Principal Component 1 
+
+PC1 = pca$scores[,1]
+
+PC1_img = matrix(0,198,198)
+
+for(k in 1:198){
+  for(l in 1:198){
+    PC1_img[k,l]=PC1[198*(k-1)+l]
+  }
+} 
+library(RSNNS)
+PC1_img_n=normalizeData(PC1_img,type="0_1")
+
+plot(c(0, 200), c(0, 200), type = "n", xlab = "", ylab = "")
+rasterImage(PC1_img_n,0,0, 198, 198, interpolate = FALSE)
+
+#Principal Component 2 
+
+PC2 = pca$scores[,2]
+
+PC2_img = matrix(0,198,198)
+
+for(k in 1:198){
+  for(l in 1:198){
+    PC2_img[k,l]=PC2[198*(k-1)+l]
+  }
+} 
+library(RSNNS)
+PC2_img_n=normalizeData(PC2_img,type="0_1")
+
+plot(c(0, 200), c(0, 200), type = "n", xlab = "", ylab = "")
+rasterImage(PC2_img_n,0,0, 198, 198, interpolate = FALSE)
+
+#Principal Component 3 
+
+PC3 = pca$scores[,3]
+
+PC3_img = matrix(0,198,198)
+
+for(k in 1:198){
+  for(l in 1:198){
+    PC3_img[k,l]=PC3[198*(k-1)+l]
+  }
+} 
+library(RSNNS)
+PC3_img_n=normalizeData(PC3_img,type="0_1")
+
+plot(c(0, 200), c(0, 200), type = "n", xlab = "", ylab = "")
+rasterImage(PC3_img_n,0,0, 198, 198, interpolate = FALSE)
+```
+
