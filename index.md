@@ -10,4 +10,4 @@
 
 ## Week 4 (October 26)
 
-[Here](files/Hw-2.html) is my HW-2. [Here](files/HW-2 Task-1b.R) [Here](files/HW-2-Task-1b.R) [Here](files/HW-2-Task-2-deneme.R) and [Here](files/HW_2_task3_deneme.R) are the codes for Task 1, Task 2 and Task 3.
+[Here](files/Hw-2.html) is my HW-2. [Here](files/HW-2-Task-1a.R) [Here](files/HW-2-Task-1b.R) [Here](files/HW-2-Task-2-deneme.R) and [Here](files/HW_2_task3_deneme.R) are the codes for Task 1, Task 2 and Task 3.
