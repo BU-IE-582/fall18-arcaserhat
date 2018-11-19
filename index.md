@@ -14,4 +14,4 @@
 
 ## Week 8 (November 19)
 
-[Here](files/Hw-3.html) is my HW-3. [Here](files/HW3_1a_deneme.R), [Here](files/HW3_Task1_ser.R), [Here](files/HW3_Task2_ser.R) and [Here] are the codes for Task 1a, Task 1b&1c and Task 2.
+[Here](files/Hw-3.html) is my HW-3. [Here](files/HW3_1a_deneme.R), [Here](files/HW3_Task1_ser_.R), [Here](files/HW3_Task2_ser.R) and [Here] are the codes for Task 1a, Task 1b&1c and Task 2.
