@@ -1,0 +1,233 @@
+---
+title: "IE 582 - Homework - 5"
+author: "Serhat Arca"
+date: "January 7, 2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Introduction
+
+Multiple- instance learning (MIL) is a variation on supervised learning.The aim of MIL is to classify a bag given its instance characteristics. In this homework, we are asked to work with Musk1 data and apply MIL on this data. Musk1 data consists of 92 molecules of which 47 are labeled as musks and 45 are labeled as non-musks. The aim is to predict whether new molecules will be musks or non-musks. 
+
+The following algorithm is used to transform instance-level information to bag-level represantation: 
+
+Step 1: Cluster instances with some clustering algorithm
+Step 2: For each bag: Calculate the distance of its instances to each cluster centroid (i.e. each instance of the bag is represented by a feature vector of length r)
+Step 3: Represent the bag as the average of its instance distances to the cluster centroids (a bag is represented by a feature vector of length r). 
+
+Two distance measures, namely Eucledian and Manhattan, are used in the 1st step. For each distance measure, the performance is evaluated by k-means and hierarchical clustering. 
+
+
+## 2. Results and Discussions
+
+K-means and hierarchical clustering is used with two different distance measures to create the models. 10 different k-levels are used as part of model construction. The accuracies as a function of k-levels for a total of 4 different clustering techniques and distance measures are given in Figure 1
+
+![**Figure 1** - Accuracy results for differenet clustering techniques with Euclidean and Manhattan distances.](C:/Users/07830/Desktop/Rplot01.png)  
+
+An investigation of Figure 1 reveals that as the value of k increases, the accuracy also increases. This is the expected result. However, the increase in the k-level beyond a certain point can result in overfitting. As a rule of thumb, the optimal value of k is said to be square root of half the number of instances. For the data of this homework, this corresponds to a value around 16.From Figure 1, it is seen that the accuracy for a k-level of 21 with k-means algorithm on Eucleadian distance yields an accuracy close to 0.9. Furthermore, comparing this value with 16, it might be concluded that a k-level of 21 is reasonable. 
+
+Using a value of 21 as the k-level abd k-means algorithm with Eucledian distance, the ROC curve is plotted. The ROC curve is created by plotting the true positive rate against the false positive rate at various threshold settings. The ROC curve is given in Figure 2:
+
+
+![**Figure 2** - ROC curve for k-means algorithm with k-level=21 using Manhattan distance.](C:/Users/07830/Desktop/Rplot02.png)
+
+
+The area under the ROC curve is a mesure of accuracy. A high area indicates high accuracy. An investigation of Figure 2 reveals that the area under the ROC curve increases at low false positive rates. This means that the area under the curve increases at low values of x and it indicates high accuracy.
+
+## 3. Appendix: Code
+
+
+```{r,include=TRUE,eval=FALSE}
+require(stats)
+require(TSdist)
+require(cluster)
+require(ROCR)
+library(caret)
+
+set.seed(123)
+
+data=read.csv(file="C:/Users/07830/Desktop/Musk1.csv", header = FALSE, sep = ",")
+
+d=c(3,6,9,12,15,18,21,25,30,40)
+acc_Euc=array()
+acc_Manhat=array()
+acc_Euc_hier=array()
+acc_Manhat_hier=array()
+
+# function to find medoid in cluster i
+clust.centroid = function(z, dat, clusters) {
+  ind = (clusters == z)
+  colMeans(dat[ind,])
+}
+
+for (i in 1:length(d)) {
+  
+k=d[i]
+distEuc=data.frame()
+distManhat=data.frame()
+distEuc_hier=data.frame()
+distManhat_hier=data.frame()
+
+n=nrow(data)
+
+# Euclidean  - kmeans
+
+cluster_Euc=pam(data[,3:length(data)],k,metric = "euclidean")
+center_Euc=cluster_Euc$medoids
+#clusters=cluster$cluster
+
+# Manhattan - kmeans
+
+cluster_Manhat=pam(data[,3:length(data)],k,metric = "manhattan")
+center_Manhat=cluster_Manhat$medoids
+
+# Euclidean  - hierarchical
+cluster_Euc_hier = hclust(dist(data[,3:length(data)], method = "euclidean"), method = "average")
+cluster_Euc_h <- cutree(cluster_Euc_hier, k = k)
+
+hier_center_Euc=NULL
+
+for (s in 1:k) {
+  hier_center_Euc <- rbind(hier_center_Euc, colMeans(data[,3:length(data)][cluster_Euc_h == s, , drop = FALSE]))
+}
+
+# Manhattan  - hierarchical
+cluster_Manhat_hier = hclust(dist(data[,3:length(data)], method = "manhattan"), method = "average")
+clust_Manhat_h <- cutree(cluster_Manhat_hier, k = k)
+
+hier_center_Manhat=NULL
+
+for (s in 1:k) {
+  hier_center_Manhat <- rbind(hier_center_Manhat, colMeans(data[,3:length(data)][clust_Manhat_h == s, , drop = FALSE]))
+}
+
+
+for (j in 1:n) {
+    for (p in 1:k){
+      distEuc[j,p]=EuclideanDistance(as.double(data[j,3:length(data)]), as.vector(center_Euc[p,]))
+      distManhat[j,p]=ManhattanDistance(as.double(data[j,3:length(data)]), as.vector(center_Manhat[p,]))
+      distEuc_hier[j,p]=EuclideanDistance(as.double(data[j,3:length(data)]), as.vector(hier_center_Euc[p,]))
+      distManhat_hier[j,p]=ManhattanDistance(as.double(data[j,3:length(data)]), as.vector(hier_center_Manhat[p,]))
+         
+  }}
+
+
+dat_Euc = cbind(data[,1:2], distEuc)
+dat_Manhat = cbind(data[,1:2], distManhat)
+dat_Euc_hier = cbind(data[,1:2], distEuc_hier)
+dat_Manhat_hier = cbind(data[,1:2], distManhat_hier)
+
+
+dat_Euc_2= aggregate(dat_Euc, by=list(dat_Euc[,2]), mean)
+dat_Manhat_2= aggregate(dat_Manhat, by=list(dat_Manhat[,2]), mean)
+dat_Euc_2_hier= aggregate(dat_Euc_hier, by=list(dat_Euc_hier[,2]), mean)
+dat_Manhat_2_hier= aggregate(dat_Manhat_hier, by=list(dat_Manhat_hier[,2]), mean)
+
+# Lasso regression
+dat_Euc_2[,c(1,3)]=NULL
+dat_Manhat_2[,c(1,3)]=NULL
+dat_Euc_2_hier[,c(1,3)]=NULL
+dat_Manhat_2_hier[,c(1,3)]=NULL
+# 
+class_Euc=as.factor(dat_Euc_2[,1])
+class_Manhat=as.factor(dat_Manhat_2[,1])
+class_Euc_hier=as.factor(dat_Euc_2_hier[,1])
+class_Manhat_hier=as.factor(dat_Manhat_2_hier[,1])
+
+m=k+1
+colnames(dat_Euc_2) <- c(paste0("v", 1:m))
+colnames(dat_Manhat_2) <- c(paste0("v", 1:m))
+colnames(dat_Euc_2_hier) <- c(paste0("v", 1:m))
+colnames(dat_Manhat_2_hier) <- c(paste0("v", 1:m))
+
+# Euclidean  - kmeans - accuracy 
+model_Euc = train(as.factor(v1)~.,data=dat_Euc_2, method="pda", metric="Accuracy", maximize = TRUE,
+             trControl=trainControl("cv",number=10))
+
+predicted_Euc = predict(model_Euc, dat_Euc_2)
+tbl_Euc=table(predicted_Euc, class_Euc)
+acc_Euc[i]=sum(diag(tbl_Euc))/length(class_Euc)
+
+# Manhattan - kmeans - accuracy 
+model_Manhat = train(as.factor(v1)~.,data=dat_Manhat_2, method="pda", metric="Accuracy", maximize = TRUE,
+                trControl=trainControl("cv",number=10))
+
+predicted_Manhat = predict(model_Manhat, dat_Manhat_2)
+tbl_Manhat=table(predicted_Manhat, class_Manhat)
+acc_Manhat[i]=sum(diag(tbl_Manhat))/length(class_Manhat)
+
+# Euclidean  - hierarchical - accuracy 
+model_Euc_hier = train(as.factor(v1)~.,data=dat_Euc_2_hier, method="pda", metric="Accuracy", maximize = TRUE,
+                trControl=trainControl("cv",number=10))
+
+predicted_Euc_hier = predict(model_Euc_hier, dat_Euc_2_hier)
+tbl_Euc_hier=table(predicted_Euc_hier, class_Euc_hier)
+acc_Euc_hier[i]=sum(diag(tbl_Euc_hier))/length(class_Euc_hier)
+
+
+# Manhattan  - hierarchical - accuracy 
+model_Manhat_hier = train(as.factor(v1)~.,data=dat_Manhat_2_hier, method="pda", metric="Accuracy", maximize = TRUE,
+                  trControl=trainControl("cv",number=10))
+
+predicted_Manhat_hier = predict(model_Manhat_hier, dat_Manhat_2_hier)
+tbl_Manhat_hier=table(predicted_Manhat_hier, class_Manhat_hier)
+acc_Manhat_hier[i]=sum(diag(tbl_Manhat_hier))/length(class_Manhat_hier)
+}
+
+# Plots
+plot(d, acc_Euc, col="gray", type="b", ylab="Accuracy", xlab="k",
+     xlim=c(0, 40), ylim=c(0.60, 1))
+par(new=TRUE)
+lines(d,acc_Manhat, ylab="Accuracy", xlab="k",type = "b",
+     xlim=c(0, 40), ylim=c(0.60, 1))
+par(new=TRUE)
+lines(d, acc_Euc_hier, col="orange", ylab="Accuracy", xlab="k",type="b",
+     xlim=c(0, 40), ylim=c(0.60, 1))
+par(new=TRUE)
+lines(d, acc_Manhat_hier, col="blue", ylab="Accuracy", xlab="k",type="b",
+     xlim=c(0, 40), ylim=c(0.60, 1))
+legend("bottomright", legend=c("k-means/Eucledian", "k-means/Manhattan", "hierarchical clust/Eucledian", "hierarchical clust/Manattan"),
+       col=c("gray", "black", "orange","blue"), lty=1:2, cex=0.7)
+
+
+# kmeans, k=21 with Manhattan distance
+k= 21
+m=k+1
+
+cluster_final=pam(data[,3:length(data)],k,metric = "manhattan")
+center_final=cluster_final$medoids
+
+dist_final=data.frame()
+
+for (t in 1:n) {
+  for (g in 1:k){
+    dist_final[t,g]=ManhattanDistance(as.double(data[t,3:length(data)]), as.vector(center_final[g,]))
+  }}
+dat_final = cbind(data[,1:2], dist_final)
+dat_final_2= aggregate(dat_final, by=list(dat_final[,2]), mean)
+dat_final_2[,c(1,3)]=NULL
+class_final=as.factor(dat_final_2[,1])
+colnames(dat_final_2) <- c(paste0("v", 1:m))
+
+model_final = train(as.factor(v1)~.,data=dat_final_2, method="pda", metric="Accuracy", maximize = TRUE,
+                trControl=trainControl("cv",number=10))
+  
+predicted_final = predict(model_final, dat_final_2, type = "prob")
+
+
+pred <- prediction(predicted_final[,2], class_final)
+perf <- performance(pred,"tpr","fpr")
+plot(perf)
+
+
+```
+
+
+
+
