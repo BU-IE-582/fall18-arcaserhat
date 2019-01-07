@@ -23,3 +23,7 @@
 ## Week 15 (January 7)
 
 [Here](files/HW5_Arca.html) is my HW-5. [Here](files/HW5_Arca_.R) is the code for the homework.
+
+## Week 15 (January 7)
+
+[Here](files/project.html) is the term project for Group 5. 
