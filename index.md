@@ -19,3 +19,7 @@
 ## Week 12 (December 19)
 
 [Here](files/HW4_serhat_arca.html) is my HW-4. [Here](files/HW4_.R) and [Here](files/HW4_classification_.R) are the codes for regression and classification. 
+
+## Week 15 (January 7)
+
+[Here](files/HW5_Arca.html) is my HW-5. [Here](files/HW5_Arca_.R) is the code for the homework.
